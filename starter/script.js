@@ -91,11 +91,30 @@ var upperCasedCharacters = [
 ];
 
 
-//comparing number for sort 
 
+/*
+@note:    This function is used for sort()    
+@brief:   This is used to sort an array of numbers in ascending order,
+          if the difference between a and b is -ve, 
+          so, a will come first in the sorted array.
+          if a - b = +ve, so, b is come first  
+@param:   Sort inputs 
+@return:  Compare values 
+*/
 function compare_number(a, b) {
   return a - b;
 }
+
+
+/*
+@brief:     this is used to prompt the user to input a password length between 10-64
+            if user set the default 0, then Math.random() generate password length range 10 - 64.
+            if the input is not a number, an error message is displayed and do{}while, 
+            will repeat prompt using flag.
+
+@param   :   N/A 
+@return :   array,  Example: [11, 9, 5, 2]
+*/
 
 // Function to prompt user for password options
 function getPasswordOptions() {
@@ -105,9 +124,8 @@ function getPasswordOptions() {
 
   let length_of_password = 0; // default set to 0
 
-  let auto_flag = -1; // in case user gives 0, then random(10 -64) length will replace the length_of_password 
-
   let arr = [];
+
   do {
     length_of_password = prompt("Enter password length between 10 - 64 length (Auto :0)", 0);
 
@@ -154,9 +172,6 @@ function getPasswordOptions() {
       // remaining_value/3 : in order to keep the total < length_of_password
       let random_value = Math.floor(Math.random() * remaining_value / 3) + 1;
 
-      // console.log("random_value :", random_value);
-      // console.log("remaining_value :", remaining_value);
-
       remaining_value -= random_value;
       //  update the array 
       arr.push(random_value);
@@ -171,18 +186,21 @@ function getPasswordOptions() {
   //  sort lowest to highest 
   arr.sort(compare_number);
 
-  console.log("sort the array:", arr);
   // sum all three element 
   let random_num_total = arr.reduce(function (a, b) { return a + b; });
-
+  // 4th element 
   arr.push((Number(length_of_password) - random_num_total));
 
   // revers the array
-  console.log(arr.reverse())
+  console.log(arr.reverse());
 
   return arr;
 }
-
+/*
+@brief   :   Find the total months from "finances" data sets
+@param   :   Array 
+@return :   return total months 
+*/
 // Function for getting a random element from an array
 function getRandom(arr) {
 
@@ -221,7 +239,6 @@ function getRandom(arr) {
           else {
             console.log("detected error: undefined");
             error_detect = false;
-
           }
 
         } else {
@@ -235,10 +252,13 @@ function getRandom(arr) {
   return tmp_password;
 
 }
-
+/*
+@brief   :   Find the total months from "finances" data sets
+@param   :   arr 
+@return :   return total months 
+*/
 // Function to generate password with user input
 function generatePassword(tmp_password) {
-
   // let pass_split = password.split("");
   tmp_password.sort(() => Math.random() - 0.5)
   // let pass_join = pass_split.join('');
@@ -251,6 +271,11 @@ function generatePassword(tmp_password) {
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
 
+/*
+@brief   :   Find the total months from "finances" data sets
+@param   :   Array 
+@return :   return total months 
+*/
 // Write password to the #password input
 function writePassword() {
   let password_types = getPasswordOptions();
