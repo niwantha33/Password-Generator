@@ -129,13 +129,6 @@ function getPasswordOptions() {
 
   // console.log("pass: "+length_of_password);
   if ((Number(length_of_password) >= 10 && Number(length_of_password <= 64)) || Number(length_of_password) === 0) {
-
-
-    // let lowercase_ = 3;
-    // let uppercase_ = 3;
-    // let number_ = 2;
-    // let special_characters = 2;
-
     // arr = [lowercase_, uppercase_, number_, special_characters];
 
     character_types = 4;
@@ -192,6 +185,95 @@ function getPasswordOptions() {
 
 // Function for getting a random element from an array
 function getRandom(arr) {
+  // generate array elements
+  let error_detect = true;
+  let password = "";
+  types_array = [lowerCasedCharacters, upperCasedCharacters, numericCharacters, specialCharacters]
+
+  let tmp_password = [];
+  for (let i = 0; i < types_array.length; i++) {
+    let tmp_array = Array.from({ length: types_array[i].length }, (v, index) => index);
+    // shuffle array elements 
+    tmp_array.sort(() => Math.random() - 0.5);
+
+    for (let j = 0; j < arr[i]; j++) {
+      if (types_array[tmp_array[j]] != 'undefine') {
+        tmp_password.push(types_array[i][tmp_array[j]]);
+
+      }
+      else {
+        error_detect = false;
+      }
+
+    }
+  }
+
+  // do {
+  //   let lowercase_ = Array.from({ length: lowerCasedCharacters.length }, (v, index) => index);
+  //   // shuffle array elements 
+  //   lowercase_.sort(() => Math.random() - 0.5);
+
+  //   let tmp_lower_case = "";
+  //   for (let i = 0; i < arr[0]; i++) {
+  //     if(lowerCasedCharacters[lowercase_[i]] != 'undefine')
+  //     {
+  //       tmp_lower_case += lowerCasedCharacters[lowercase_[i]];
+
+  //     }
+  //     else{
+  //       error_detect = true;
+  //     }
+
+  //   }
+
+  //   let uppercase_ = Array.from({ length: upperCasedCharacters.length }, (v, index) => index);
+  //   uppercase_.sort(() => Math.random() - 0.5);
+
+  //   let tmp_upper_case = "";
+  //   for (let i = 0; i < arr[1]; i++) {
+  //     tmp_upper_case += upperCasedCharacters[uppercase_[i]];
+  //   }
+  //   console.log(tmp_upper_case);
+
+  //   let number_ = Array.from({ length: numericCharacters.length }, (v, index) => index);
+  //   console.log(number_)
+  //   number_.sort(() => Math.random() - 0.5);
+  //   console.log(number_)
+
+  //   let tmp_number = "";
+  //   for (let i = 0; i < arr[2]; i++) {
+  //     console.log(numericCharacters[number_[i]]);
+  //     tmp_number += numericCharacters[number_[i]];
+  //   }
+  //   console.log(tmp_number);
+
+  //   let special_characters = Array.from({ length: specialCharacters.length }, (v, index) => index);
+  //   console.log("special char:", special_characters);
+
+  //   special_characters.sort(() => Math.random() - 0.5);
+
+  //   console.log("special char:", special_characters);
+
+  //   let tmp_char = "";
+
+  //   for (let i = 0; i < arr[3]; i++) {
+  //     console.log(specialCharacters[special_characters[i]])
+  //     debugger;
+  //     tmp_char += specialCharacters[special_characters[i]];
+  //   }
+
+  //   password = tmp_lower_case + tmp_upper_case + tmp_number + tmp_char;
+
+
+  // } while (!error_detect);
+
+
+
+  // let pass_split = password.split("");
+  tmp_password.sort(() => Math.random() - 0.5)
+  // let pass_join = pass_split.join('');
+  console.log(tmp_password);
+  // console.log(pass_join);
 
   return password
 
@@ -209,7 +291,7 @@ var generateBtn = document.querySelector('#generate');
 function writePassword() {
   let password_types = getPasswordOptions();
   let password_array = getRandom(password_types);
-  
+
   var password = generatePassword();
   var passwordText = document.querySelector('#password');
 
