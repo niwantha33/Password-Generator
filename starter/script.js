@@ -185,102 +185,66 @@ function getPasswordOptions() {
 
 // Function for getting a random element from an array
 function getRandom(arr) {
-  // generate array elements
+
+  console.log("Get-random: ", arr)
   let error_detect = true;
-  let password = "";
+
   types_array = [lowerCasedCharacters, upperCasedCharacters, numericCharacters, specialCharacters]
 
   let tmp_password = [];
-  for (let i = 0; i < types_array.length; i++) {
-    let tmp_array = Array.from({ length: types_array[i].length }, (v, index) => index);
-    // shuffle array elements 
-    tmp_array.sort(() => Math.random() - 0.5);
 
-    for (let j = 0; j < arr[i]; j++) {
-      if (types_array[tmp_array[j]] != 'undefine') {
-        tmp_password.push(types_array[i][tmp_array[j]]);
+  do {
+    for (let i = 0; i < types_array.length; i++) {
+      // generate array elements
+      let tmp_array = Array.from({ length: types_array[i].length }, (v, index) => index);
+      //  [14, 24, 22, 5, 10, 16, 11, 7, 4, 13, 19, 3, 20, 2, 1, 6, 25, 12, 0, 21, 18, 23, 15, 8, 9, 17]
+      // shuffle array elements 
+      tmp_array.sort(() => Math.random() - 0.5);
 
+      // console.log(`tmp_array : ${i}: ${arr[i]}`, tmp_array);
+
+      error_detect = true;
+
+      for (let j = 0; j < arr[i]; j++) {
+
+        // console.log(types_array[tmp_array[j]]);
+        if (tmp_array.length >= arr[i]) {
+          if (types_array[tmp_array[j]] !== 'undefined') {
+
+            console.log(`array list [${i}]:[${j}] `, types_array[i][tmp_array[j]])
+
+            tmp_password.push(types_array[i][tmp_array[j]]);
+
+            error_detect = true;
+
+          }
+          else {
+            console.log("detected error: undefined");
+            error_detect = false;
+
+          }
+
+        } else {
+          tmp_password.push(types_array[i][tmp_array[Math.floor(Math.random() * types_array[i].length)]]);
+
+        }
       }
-      else {
-        error_detect = false;
-      }
-
     }
-  }
+  } while (!error_detect);
 
-  // do {
-  //   let lowercase_ = Array.from({ length: lowerCasedCharacters.length }, (v, index) => index);
-  //   // shuffle array elements 
-  //   lowercase_.sort(() => Math.random() - 0.5);
+  return tmp_password;
 
-  //   let tmp_lower_case = "";
-  //   for (let i = 0; i < arr[0]; i++) {
-  //     if(lowerCasedCharacters[lowercase_[i]] != 'undefine')
-  //     {
-  //       tmp_lower_case += lowerCasedCharacters[lowercase_[i]];
+}
 
-  //     }
-  //     else{
-  //       error_detect = true;
-  //     }
-
-  //   }
-
-  //   let uppercase_ = Array.from({ length: upperCasedCharacters.length }, (v, index) => index);
-  //   uppercase_.sort(() => Math.random() - 0.5);
-
-  //   let tmp_upper_case = "";
-  //   for (let i = 0; i < arr[1]; i++) {
-  //     tmp_upper_case += upperCasedCharacters[uppercase_[i]];
-  //   }
-  //   console.log(tmp_upper_case);
-
-  //   let number_ = Array.from({ length: numericCharacters.length }, (v, index) => index);
-  //   console.log(number_)
-  //   number_.sort(() => Math.random() - 0.5);
-  //   console.log(number_)
-
-  //   let tmp_number = "";
-  //   for (let i = 0; i < arr[2]; i++) {
-  //     console.log(numericCharacters[number_[i]]);
-  //     tmp_number += numericCharacters[number_[i]];
-  //   }
-  //   console.log(tmp_number);
-
-  //   let special_characters = Array.from({ length: specialCharacters.length }, (v, index) => index);
-  //   console.log("special char:", special_characters);
-
-  //   special_characters.sort(() => Math.random() - 0.5);
-
-  //   console.log("special char:", special_characters);
-
-  //   let tmp_char = "";
-
-  //   for (let i = 0; i < arr[3]; i++) {
-  //     console.log(specialCharacters[special_characters[i]])
-  //     debugger;
-  //     tmp_char += specialCharacters[special_characters[i]];
-  //   }
-
-  //   password = tmp_lower_case + tmp_upper_case + tmp_number + tmp_char;
-
-
-  // } while (!error_detect);
-
-
+// Function to generate password with user input
+function generatePassword(tmp_password) {
 
   // let pass_split = password.split("");
   tmp_password.sort(() => Math.random() - 0.5)
   // let pass_join = pass_split.join('');
   console.log(tmp_password);
   // console.log(pass_join);
-
-  return password
-
-}
-
-// Function to generate password with user input
-function generatePassword() {
+  return tmp_password.join('');
 
 }
 
@@ -291,8 +255,7 @@ var generateBtn = document.querySelector('#generate');
 function writePassword() {
   let password_types = getPasswordOptions();
   let password_array = getRandom(password_types);
-
-  var password = generatePassword();
+  var password = generatePassword(password_array);
   var passwordText = document.querySelector('#password');
 
   passwordText.value = password;
