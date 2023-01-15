@@ -1,0 +1,75 @@
+script.js:146 Random Number auto mode:  62
+script.js:157 random_value : 26
+script.js:159 remaining_value : 62
+script.js:168 26 36
+script.js:157 random_value : 31
+script.js:159 remaining_value : 36
+script.js:168 31 5
+script.js:157 random_value : 2
+script.js:159 remaining_value : 5
+script.js:168 2 3
+script.js:157 random_value : 1
+script.js:159 remaining_value : 3
+script.js:168 1 2
+script.js:178 sort the array: (4) [1, 2, 26, 31]
+script.js:200 after load.
+script.js:146 Random Number auto mode:  30
+script.js:157 random_value : 13
+script.js:159 remaining_value : 30
+script.js:168 13 17
+script.js:157 random_value : 14
+script.js:159 remaining_value : 17
+script.js:168 14 3
+script.js:157 random_value : 3
+script.js:159 remaining_value : 3
+script.js:168 3 0
+script.js:157 random_value : 1
+script.js:159 remaining_value : 0
+script.js:168 1 -1
+script.js:178 sort the array: (4) [1, 1, 13, 14]
+script.js:200 after load.
+script.js:146 Random Number auto mode:  33
+script.js:157 random_value : 20
+script.js:159 remaining_value : 33
+script.js:168 20 13
+script.js:157 random_value : 5
+script.js:159 remaining_value : 13
+script.js:168 5 8
+script.js:157 random_value : 4
+script.js:159 remaining_value : 8
+script.js:168 4 4
+script.js:157 random_value : 1
+script.js:159 remaining_value : 4
+script.js:168 1 3
+script.js:178 sort the array: (4) [1, 20, 4, 5]
+script.js:200 after load.
+script.js:146 Random Number auto mode:  43
+script.js:157 random_value : 41
+script.js:159 remaining_value : 43
+script.js:168 41 2
+script.js:157 random_value : 1
+script.js:159 remaining_value : 2
+script.js:168 1 1
+script.js:157 random_value : 1
+script.js:159 remaining_value : 1
+script.js:168 1 0
+script.js:157 random_value : 1
+script.js:159 remaining_value : 0
+script.js:168 1 -1
+script.js:178 sort the array: (4) [1, 1, 1, 41]
+script.js:200 after load.
+script.js:146 Random Number auto mode:  51
+script.js:157 random_value : 21
+script.js:159 remaining_value : 51
+script.js:168 21 30
+script.js:157 random_value : 17
+script.js:159 remaining_value : 30
+script.js:168 17 13
+script.js:157 random_value : 12
+script.js:159 remaining_value : 13
+script.js:168 12 1
+script.js:157 random_value : 1
+script.js:159 remaining_value : 1
+script.js:168 1 0
+script.js:178 sort the array: (4) [1, 12, 17, 21]
+script.js:200 after load.
