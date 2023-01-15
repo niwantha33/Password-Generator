@@ -91,7 +91,6 @@ var upperCasedCharacters = [
 ];
 
 
-
 // Function to prompt user for password options
 function getPasswordOptions() {
   // debugger;
@@ -102,6 +101,7 @@ function getPasswordOptions() {
 
   let auto_flag = -1; // in case user gives 0, then random(10 -64) length will replace the length_of_password 
 
+  let arr = [];
   do {
     length_of_password = prompt("Enter password length between 10 - 64 length (Auto :0)", 0);
 
@@ -117,18 +117,42 @@ function getPasswordOptions() {
       flag = true; // validation success 
 
     }
-   
+
   } while (!flag);
 
   if ((Number(length_of_password) >= 10 && Number(length_of_password <= 64)) || Number(length_of_password) === 0) {
-        
 
+    // let lowercase_ = 3;
+    // let uppercase_ = 3;
+    // let number_ = 2;
+    // let special_characters = 2;
+    character_types = 4;
+
+
+    let remain_value = 0;
+    // Auto option 
+    if (Number(length_of_password) === 0) {
+
+      remain_value = Math.floor(Math.random() * 54 + 10); // range: 54 and minimum : 10 
+    }
+    else {
+      // user selected value
+      remain_value = Number(length_of_password);
+    }
+    for (let i = 0; i < character_types; i++) {
+
+
+    }
+
+    arr = [lowercase_, uppercase_, number_, special_characters];
   }
   else {
-    window.alert("Something Wrong!\nPlease Refresh the Webpage")
+    window.alert("Something Wrong!\nPlease Refresh the Webpage");
+    // reload the browser 
+    location.reload();
   }
 
- 
+  return arr;
 
 }
 
