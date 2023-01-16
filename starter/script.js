@@ -197,9 +197,9 @@ function getPasswordOptions() {
   return arr;
 }
 /*
-@brief   :   Find the total months from "finances" data sets
-@param   :   Array 
-@return :   return total months 
+@brief:  Find the total months from "finances" data sets
+@param:  Array 
+@return: password array
 */
 // Function for getting a random element from an array
 function getRandom(arr) {
@@ -254,9 +254,9 @@ function getRandom(arr) {
 
 }
 /*
-@brief:   generate the password from char array 
+@brief:   generate the password from char array and check the criteria of the password 
 @param:   char array  
-@return:   string 
+@return:  string 
 */
 
 // Function to generate password with user input
@@ -271,19 +271,19 @@ function generatePassword(tmp_password) {
 
   // check at least one digit included 
 
-  let match_number = /[0-9]/g ;// match character 0 through 9 , g: repeat 
+  let match_number = /[0-9]/g;// match character 0 through 9 , g: repeat 
   let match_lowercase = /[a-z]/g; // match character a through z , g: repeat 
   let match_uppercase = /[A-Z]/g; // match character A through Z , g: repeat 
-  let match_special_char = /[\W]/g; 
+  let match_special_char = /[\W]/g; // find special characters 
 
-  console.log("is it available \"Numeric\" in generated password:", generated_password.match(match_number) !== null?"Yes":"No", "=> Length:",generated_password.match(match_number).length)
+  console.log("is available \"Numeric\" in the generated password:", generated_password.match(match_number) !== null ? "Yes" : "No", "=> Length:", generated_password.match(match_number).length)
 
-  console.log("is it available \"Lowercase\" in generated password:", generated_password.match(match_lowercase) !== null?"Yes":"No", "=> Length:",generated_password.match(match_lowercase).length)
+  console.log("is available \"Lowercase\" in the generated password:", generated_password.match(match_lowercase) !== null ? "Yes" : "No", "=> Length:", generated_password.match(match_lowercase).length)
 
-  console.log("is it available \"Uppercase\" in generated password:", generated_password.match(match_uppercase) !== null?"Yes":"No","=> Length:",generated_password.match(match_uppercase).length)
+  console.log("is available \"Uppercase\" in the generated password:", generated_password.match(match_uppercase) !== null ? "Yes" : "No", "=> Length:", generated_password.match(match_uppercase).length)
 
-  console.log("is it available \"Special Characters\" in generated password:", generated_password.match(match_special_char) !== null?"Yes":"No", "=> Length:",generated_password.match(match_special_char).length)
- 
+  console.log("is available \"Special Characters\" in the generated password:", generated_password.match(match_special_char) !== null ? "Yes" : "No", "=> Length:", generated_password.match(match_special_char).length)
+
 
   return generated_password;
 
@@ -293,9 +293,9 @@ function generatePassword(tmp_password) {
 var generateBtn = document.querySelector('#generate');
 
 /*
-@brief   :   Find the total months from "finances" data sets
-@param   :   Array 
-@return :   return total months 
+@brief:   Write password to the #password input
+@param:   N/A
+@return:  N/A
 */
 
 // Write password to the #password input
@@ -304,12 +304,12 @@ function writePassword() {
   let password_types = getPasswordOptions();
   let password_array = getRandom(password_types);
   var password = generatePassword(password_array);
-  
+
   var passwordText = document.querySelector('#password');
 
   passwordText.value = password;
   console.timeEnd();
-  
+
 }
 
 // Add event listener to generate button
