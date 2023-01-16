@@ -4,6 +4,8 @@
 
 Link to project : [Password Generator](https://niwantha33.github.io/Password-Generator/)
 
+![page](./assets/images/front-page.png)
+
 ### Regular Expressions 
 
 
