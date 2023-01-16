@@ -192,7 +192,7 @@ function getPasswordOptions() {
   arr.push((Number(length_of_password) - random_num_total));
 
   // revers the array
-  console.log(arr.reverse());
+  arr.reverse();
 
   return arr;
 }
@@ -204,7 +204,8 @@ function getPasswordOptions() {
 // Function for getting a random element from an array
 function getRandom(arr) {
 
-  console.log("Get-random: ", arr)
+  // console.log("Get-random: ", arr)
+
   let error_detect = true;
 
   types_array = [lowerCasedCharacters, upperCasedCharacters, numericCharacters, specialCharacters]
@@ -229,7 +230,7 @@ function getRandom(arr) {
         if (tmp_array.length >= arr[i]) {
           if (types_array[tmp_array[j]] !== 'undefined') {
 
-            console.log(`array list [${i}]:[${j}] `, types_array[i][tmp_array[j]])
+            // console.log(`array list [${i}]:[${j}] `, types_array[i][tmp_array[j]])
 
             tmp_password.push(types_array[i][tmp_array[j]]);
 
@@ -253,10 +254,11 @@ function getRandom(arr) {
 
 }
 /*
-@brief   :   Find the total months from "finances" data sets
-@param   :   arr 
-@return :   return total months 
+@brief:   generate the password from char array 
+@param:   char array  
+@return:   string 
 */
+
 // Function to generate password with user input
 function generatePassword(tmp_password) {
   // let pass_split = password.split("");
@@ -264,7 +266,26 @@ function generatePassword(tmp_password) {
   // let pass_join = pass_split.join('');
   console.log(tmp_password);
   // console.log(pass_join);
-  return tmp_password.join('');
+
+  let generated_password = tmp_password.join(''); // join the array char to string 
+
+  // check at least one digit included 
+
+  let match_number = /[0-9]/g ;// match character 0 through 9 , g: repeat 
+  let match_lowercase = /[a-z]/g; // match character a through z , g: repeat 
+  let match_uppercase = /[A-Z]/g; // match character A through Z , g: repeat 
+  let match_special_char = /[\W]/g; 
+
+  console.log("is it available \"Numeric\" in generated password:", generated_password.match(match_number) !== null?"Yes":"No", "=> Length:",generated_password.match(match_number).length)
+
+  console.log("is it available \"Lowercase\" in generated password:", generated_password.match(match_lowercase) !== null?"Yes":"No", "=> Length:",generated_password.match(match_lowercase).length)
+
+  console.log("is it available \"Uppercase\" in generated password:", generated_password.match(match_uppercase) !== null?"Yes":"No","=> Length:",generated_password.match(match_uppercase).length)
+
+  console.log("is it available \"Special Characters\" in generated password:", generated_password.match(match_special_char) !== null?"Yes":"No", "=> Length:",generated_password.match(match_special_char).length)
+ 
+
+  return generated_password;
 
 }
 
@@ -276,15 +297,21 @@ var generateBtn = document.querySelector('#generate');
 @param   :   Array 
 @return :   return total months 
 */
+
 // Write password to the #password input
 function writePassword() {
+  console.time();
   let password_types = getPasswordOptions();
   let password_array = getRandom(password_types);
   var password = generatePassword(password_array);
+  
   var passwordText = document.querySelector('#password');
 
   passwordText.value = password;
+  console.timeEnd();
+  
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener('click', writePassword);
+
