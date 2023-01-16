@@ -2,7 +2,7 @@
 
 ## Description 
 
-[Password Generator](https://niwantha33.github.io/Password-Generator/): Link
+Link to project : [Password Generator](https://niwantha33.github.io/Password-Generator/)
 
 ### Regular Expressions 
 
