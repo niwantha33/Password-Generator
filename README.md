@@ -62,7 +62,37 @@ function writePassword() {
 
   passwordText.value = password;
 ```
-- I used regular expressions to validate the user input for the password length. Initially I used  isFinite() in order to  check  non-numeric characters, however, I leaned that the regular expression [a-zA-Z\W] search pattern is the best way to check the user input, further, i found JavaScript inbuilt "match" and "test" are the best way to check the password and validate the user input with regular expression.
+- I used regular expressions to validate the user input for the password characters. Initially, I used isFinite() function in my program to check non-numeric characters. 
+
+- Furthermore, I figured out there is a method called regular expression pattern sequence. So, that could help to find the incorrect user inputs. 
+
+- Further, I found two inbuilt libraries in JavaScript called "match" and "test". 
+
+```javascript
+
+  if (length_of_password.match(/[a-zA-Z\W]/g)) {
+
+    window.alert(`You Entered Wrong Length: (${length_of_password})\nre-enter number, between 10 - 64\nExample : 12 `);
+
+    flag = false;
+    location.reload();
+
+  } else {
+
+    flag = true; // validation success 
+
+  }
+
+  ```
+
+
+- Here I used the regular expression to match any non-numeric input and pass to the if condition to raise the flag. If the flag status is 1 (true), it will convert the user string to value using the "Number" function.
+
+```JavaScript
+(Number(length_of_password) >= 10 && Number(length_of_password <= 64)) || Number(length_of_password) === 0)
+```
+
+- If the user input is between 10 to 64, then it will generate a random number array for each character type. 
 
 - I used combination of methods to ensure the generated password is complex and difficult to guess.
 
