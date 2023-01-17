@@ -7,13 +7,23 @@ Link to project : [Password Generator](https://niwantha33.github.io/Password-Gen
 ![page](./assets/images/front-page.png)
 
 
+When a user clicks on the button with the id "generate", 
+```html
+<button id="generate" class="btn">Generate Password</button>
+```
+----
 
-```Javascript
+```JavaScript
+
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
 
+// Add event listener to generate button
+generateBtn.addEventListener('click', writePassword);
+```
+it triggers the writePassword() function which will execute the following steps:
 
-
+```Javascript
 function writePassword() {
   console.time();
   let password_types = getPasswordOptions();
@@ -27,17 +37,6 @@ function writePassword() {
 
 }
 ```
-
-```html
-<button id="generate" class="btn">Generate Password</button>
-```
-When a user clicks on the button with the id "generate", 
-
-```JavaScript
-// Add event listener to generate button
-generateBtn.addEventListener('click', writePassword);
-```
-it triggers the writePassword() function which will execute the following steps:
 
 
 - It calls the getPasswordOptions() function which prompts the user to enter the desired length of their          password   and returns an array of numbers representing the number of characters for each type of characters.
@@ -56,13 +55,13 @@ it triggers the writePassword() function which will execute the following steps:
             aria-label="Generated Password"
           ></textarea>
 ```
+----
+
 ```JavaScript
   var passwordText = document.querySelector('#password');
 
   passwordText.value = password;
 ```
-
-### Regular Expressions 
 
 
 ## Credits 
@@ -70,6 +69,8 @@ it triggers the writePassword() function which will execute the following steps:
 
 [sorting an array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort) sorting and comparing numbers
 
-[reduce function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce) adding array elements and return the total of elements -  reduce()
+[reduce() method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce) adding array elements and return the total of elements -  reduce()
 
-[Array.from](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from#specifications)
+[Array.from method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from#specifications)
+
+[Regular Expressions](https://www.youtube.com/watch?v=ZfQFUJhPqMM) : Learn Regular Expressions (Regex) 
