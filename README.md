@@ -62,7 +62,7 @@ function writePassword() {
 
   passwordText.value = password;
 ```
-- I used regular expressions to validate the user input for the password length. Initially I used  isFinite() and checking for non-numeric characters, however, regular expression "match" and "test" are the best way to check the password validate the user input.
+- I used regular expressions to validate the user input for the password length. Initially I used  isFinite() in order to  check  non-numeric characters, however, I leaned that the regular expression [a-zA-Z\W] search pattern is the best way to check the user input, further, i found JavaScript inbuilt "match" and "test" are the best way to check the password and validate the user input with regular expression.
 
 - I used combination of methods to ensure the generated password is complex and difficult to guess.
 

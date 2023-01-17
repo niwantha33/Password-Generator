@@ -136,7 +136,7 @@ function getPasswordOptions() {
   // validate the user input
   // /[a-zA-Z\W - Regular Expressions 
 
-  if (!isFinite(Number(length_of_password)) || (length_of_password.match(/[a-zA-Z\W]/g))) {
+  if (length_of_password.match(/[a-zA-Z\W]/g)) {
 
     window.alert(`You Entered Wrong Length: (${length_of_password})\nre-enter number, between 10 - 64\nExample : 12 `);
 
@@ -224,11 +224,7 @@ function getPasswordOptions() {
 
       Otherwise, it will use Math.random() to generate random numbers for array, and it will push the characters from types_array[i][tmp_array[Math.floor(Math.random() * types_array[i].length)]] to tmp_password array.
 
-      Finally, the function returns the tmp_password array which contains the randomly selected characters from the 4 arrays.
-
-@param:  Array 
-@return: password array
-*/
+      Finally, the function returns the tmp_password array which Use regular expressions to validate the user input for the password length. Instead of using isFinite() and checking for non-numeric characters, you could use a regular expression to check that the input is a number between 10 and 64.
 
 function getRandom(arr) {
 
@@ -307,15 +303,8 @@ function generatePassword(tmp_password) {
 
   console.log("is available \"Special Characters\" in the generated password:", generated_password.match(match_special_char) !== null ? "Yes" : "No", "=> Length:", generated_password.match(match_special_char).length)
 
+  Use regular expressions to validate the user input for the password length. Instead of using isFinite() and checking for non-numeric characters, you could use a regular expression to check that the input is a number between 10 and 64.
 
-  return generated_password;
-
-}
-
-// Get references to the #generate element
-var generateBtn = document.querySelector('#generate');
-
-/*
 @brief:   Write password to the #password input
 @param:   N/A
 @return:  N/A
