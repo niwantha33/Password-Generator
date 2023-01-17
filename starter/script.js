@@ -136,6 +136,8 @@ function getPasswordOptions() {
   // validate the user input
   // /[a-zA-Z\W - Regular Expressions 
 
+ 
+
   if (length_of_password.match(/[a-zA-Z\W]/g)) {
 
     window.alert(`You Entered Wrong Length: (${length_of_password})\nre-enter number, between 10 - 64\nExample : 12 `);
@@ -153,7 +155,7 @@ function getPasswordOptions() {
     // console.log("pass: "+length_of_password);
     if ((Number(length_of_password) >= 10 && Number(length_of_password <= 64)) || Number(length_of_password) === 0) {
       // arr = [lowercase_, uppercase_, number_, special_characters];
-      character_types = 4;
+      const  character_types = 4;
       let remaining_value = 0;
       // Auto option 
       if (Number(length_of_password) === 0) {

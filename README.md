@@ -96,6 +96,16 @@ function writePassword() {
 
 - I used combination of methods to ensure the generated password is complex and difficult to guess.
 
+## Debugger
+
+- I learned the debugger statement to inspect the variables in my source code. That helped me to find the issues in my code. 
+```JavaScript
+  debugger;
+```
+
+![debugger](./assets/images/debugger.png)
+
+![debug-video](./assets/images/gif-debug.gif)
 
 ## Credits 
 [ECMA262 Specifications](https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-math.random) : Math.floor()function & Math.random()
