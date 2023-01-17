@@ -225,7 +225,11 @@ function getPasswordOptions() {
       Otherwise, it will use Math.random() to generate random numbers for array, and it will push the characters from types_array[i][tmp_array[Math.floor(Math.random() * types_array[i].length)]] to tmp_password array.
 
       Finally, the function returns the tmp_password array which Use regular expressions to validate the user input for the password length. Instead of using isFinite() and checking for non-numeric characters, you could use a regular expression to check that the input is a number between 10 and 64.
+@param: array  ()
 
+@return:  tmp_password 
+
+*/
 function getRandom(arr) {
 
   types_array = [lowerCasedCharacters, upperCasedCharacters, numericCharacters, specialCharacters]
@@ -302,9 +306,15 @@ function generatePassword(tmp_password) {
   console.log("is available \"Uppercase\" in the generated password:", generated_password.match(match_uppercase) !== null ? "Yes" : "No", "=> Length:", generated_password.match(match_uppercase).length)
 
   console.log("is available \"Special Characters\" in the generated password:", generated_password.match(match_special_char) !== null ? "Yes" : "No", "=> Length:", generated_password.match(match_special_char).length)
+  
+  return generated_password;
 
-  Use regular expressions to validate the user input for the password length. Instead of using isFinite() and checking for non-numeric characters, you could use a regular expression to check that the input is a number between 10 and 64.
+}
 
+var generateBtn = document.querySelector('#generate');
+
+/*
+ 
 @brief:   Write password to the #password input
 @param:   N/A
 @return:  N/A
@@ -326,4 +336,3 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener('click', writePassword);
-
