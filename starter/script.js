@@ -126,132 +126,132 @@ function getPasswordOptions() {
 
   let arr = [];
 
-  do {
-    length_of_password = prompt("Enter password length between 10 - 64 length (Auto :0)", 0);
+  length_of_password = prompt("Enter password length between 10 - 64 length (Auto :0)", 0);
 
-    // validate the user input
-    if (!isFinite(Number(length_of_password))) {
+  // validate the user input
+  // /[a-zA-Z\W - Regular Expressions 
 
-      window.alert(`You Entered Wrong Length: (${length_of_password})\nre-enter number, between 10 - 64\nExample : 12 `);
+  if (!isFinite(Number(length_of_password)) || (length_of_password.match(/[a-zA-Z\W]/g))) {
 
-      flag = false;
+    window.alert(`You Entered Wrong Length: (${length_of_password})\nre-enter number, between 10 - 64\nExample : 12 `);
 
-    } else {
+    flag = false;
+    location.reload();
 
-      flag = true; // validation success 
+  } else {
+
+    flag = true; // validation success 
+
+  }
+
+  if (flag) {
+    // console.log("pass: "+length_of_password);
+    if ((Number(length_of_password) >= 10 && Number(length_of_password <= 64)) || Number(length_of_password) === 0) {
+      // arr = [lowercase_, uppercase_, number_, special_characters];
+      character_types = 4;
+      let remaining_value = 0;
+      // Auto option 
+      if (Number(length_of_password) === 0) {
+
+        remaining_value = Math.floor(Math.random() * 54 + 10); // range: 54 and minimum : 10 
+        // set new password length to remaining_value
+        length_of_password = remaining_value;
+        console.log("Auto generated random no: ", length_of_password);
+
+      }
+      else {
+        // user selected value
+        remaining_value = Number(length_of_password);
+      }
+      // generate random 3 random numbers 
+      // length_of_password = rdm_1 + rdm_2 + rdm_3 + ( length_of_password - sum(rdm_1 + rdm_2 + rdm_3))
+      for (let i = 0; i < character_types - 1; i++) {
+
+        // remaining_value/3 : in order to keep the total < length_of_password
+        let random_value = Math.floor(Math.random() * remaining_value / 3) + 1;
+
+        remaining_value -= random_value;
+        //  update the array 
+        arr.push(random_value);
+      }
+    }
+    else if ((Number(length_of_password) > 0) && (Number(length_of_password) < 10)) {
+
+      window.alert("Password length to be 10 -64 !\nPlease Refresh the Webpage");
+      location.reload();
 
     }
+    else if ((Number(length_of_password) > 64)) {
 
-  } while (!flag);
-
-
-  // console.log("pass: "+length_of_password);
-  if ((Number(length_of_password) >= 10 && Number(length_of_password <= 64)) || Number(length_of_password) === 0) {
-    // arr = [lowercase_, uppercase_, number_, special_characters];
-
-    character_types = 4;
-
-    let remaining_value = 0;
-    // Auto option 
-    if (Number(length_of_password) === 0) {
-
-      remaining_value = Math.floor(Math.random() * 54 + 10); // range: 54 and minimum : 10 
-      // set new password length to remaining_value
-      length_of_password = remaining_value;
-      console.log("Auto generated random no: ", length_of_password);
+      window.alert("Password length to be 10 -64 !\nPlease Refresh the Webpage");
+      location.reload();
 
     }
     else {
-      // user selected value
-      remaining_value = Number(length_of_password);
+      window.alert("Something Wrong with the password length!\nPlease Refresh the Webpage");
+      // reload the browser 
+      location.reload();
     }
-    // generate random 3 random numbers 
-    // length_of_password = rdm_1 + rdm_2 + rdm_3 + ( length_of_password - sum(rdm_1 + rdm_2 + rdm_3))
-    for (let i = 0; i < character_types - 1; i++) {
 
-      // remaining_value/3 : in order to keep the total < length_of_password
-      let random_value = Math.floor(Math.random() * remaining_value / 3) + 1;
+    //  sort lowest to highest 
+    arr.sort(compare_number);
 
-      remaining_value -= random_value;
-      //  update the array 
-      arr.push(random_value);
-    }
+    // sum all three element 
+    let random_num_total = arr.reduce(function (a, b) { return a + b; });
+
+    // 4th element 
+    arr.push((Number(length_of_password) - random_num_total));
+
+    // revers the array
+    arr.reverse();
   }
-  else {
-    window.alert("Something Wrong!\nPlease Refresh the Webpage");
-    // reload the browser 
-    location.reload();
-  }
-
-  //  sort lowest to highest 
-  arr.sort(compare_number);
-
-  // sum all three element 
-  let random_num_total = arr.reduce(function (a, b) { return a + b; });
-  // 4th element 
-  arr.push((Number(length_of_password) - random_num_total));
-
-  // revers the array
-  arr.reverse();
-
   return arr;
 }
+
 /*
-@brief:  Find the total months from "finances" data sets
+@brief:  Function for getting a random element from an array
 @param:  Array 
 @return: password array
 */
-// Function for getting a random element from an array
+
 function getRandom(arr) {
 
-  // console.log("Get-random: ", arr)
-
   let error_detect = true;
-
   types_array = [lowerCasedCharacters, upperCasedCharacters, numericCharacters, specialCharacters]
-
   let tmp_password = [];
 
-  do {
-    for (let i = 0; i < types_array.length; i++) {
-      // generate array elements
-      let tmp_array = Array.from({ length: types_array[i].length }, (v, index) => index);
-      //  [14, 24, 22, 5, 10, 16, 11, 7, 4, 13, 19, 3, 20, 2, 1, 6, 25, 12, 0, 21, 18, 23, 15, 8, 9, 17]
-      // shuffle array elements 
-      tmp_array.sort(() => Math.random() - 0.5);
+  for (let i = 0; i < types_array.length; i++) {
+    // generate array elements
+    let tmp_array = Array.from({ length: types_array[i].length }, (v, index) => index);
+    //  [14, 24, 22, 5, 10, 16, 11, 7, 4, 13, 19, 3, 20, 2, 1, 6, 25, 12, 0, 21, 18, 23, 15, 8, 9, 17]
 
-      // console.log(`tmp_array : ${i}: ${arr[i]}`, tmp_array);
+    // shuffle array elements 
+    tmp_array.sort(() => Math.random() - 0.5);
+    console.log(`tmp_array : ${i}: ${arr[i]}`, tmp_array);
 
-      error_detect = true;
+ 
+    for (let j = 0; j < arr[i]; j++) {
 
-      for (let j = 0; j < arr[i]; j++) {
-
-        // console.log(types_array[tmp_array[j]]);
-        if (tmp_array.length >= arr[i]) {
-          if (types_array[tmp_array[j]] !== 'undefined') {
-
-            // console.log(`array list [${i}]:[${j}] `, types_array[i][tmp_array[j]])
-
-            tmp_password.push(types_array[i][tmp_array[j]]);
-
-            error_detect = true;
-
-          }
-          else {
-            console.log("detected error: undefined");
-            error_detect = false;
-          }
-
-        } else {
-          tmp_password.push(types_array[i][tmp_array[Math.floor(Math.random() * types_array[i].length)]]);
-
+      // this will check tmp_array.length and generated random number for each type 
+      if (tmp_array.length >= arr[i]) {
+        console.log(types_array[tmp_array[j]])
+        if (types_array[tmp_array[j]] !== 'undefined') {
+          // console.log(`array list [${i}]:[${j}] `, types_array[i][tmp_array[j]])
+          tmp_password.push(types_array[i][tmp_array[j]]);         
         }
+        else {
+          console.log("detected error: undefined");
+          window.alert("Something Wrong!\nPlease refresh the page.")          
+        }
+
+      } else {
+        // example arr[2] = 36 , lowercase.length  < 36 , then generates random numbers for array using random
+        tmp_password.push(types_array[i][tmp_array[Math.floor(Math.random() * types_array[i].length)]]);
+
       }
     }
-  } while (!error_detect);
-
+  }
   return tmp_password;
-
 }
 /*
 @brief:   generate the password from char array and check the criteria of the password 
@@ -298,7 +298,7 @@ var generateBtn = document.querySelector('#generate');
 @return:  N/A
 */
 
-// Write password to the #password input
+
 function writePassword() {
   console.time();
   let password_types = getPasswordOptions();
