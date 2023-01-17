@@ -62,6 +62,9 @@ function writePassword() {
 
   passwordText.value = password;
 ```
+- I used regular expressions to validate the user input for the password length. Initially I used  isFinite() and checking for non-numeric characters, however, regular expression "match" and "test" are the best way to check the password validate the user input.
+
+- I used combination of methods to ensure the generated password is complex and difficult to guess.
 
 
 ## Credits 
