@@ -107,10 +107,15 @@ function compare_number(a, b) {
 
 
 /*
-@brief:     this is used to prompt the user to input a password length between 10-64
-            if user set the default 0, then Math.random() generate password length range 10 - 64.
-            if the input is not a number, an error message is displayed and do{}while, 
-            will repeat prompt using flag.
+@brief:     
+        prompt() to ask the user to enter a password length between 10 and 64 characters, or to enter 0 for an automatically generated password length.
+
+        Then, regular expression and the match() method to validate that the user input is a number and does not contain any letters or special characters. If the input is invalid, the function uses alert() to notify the user and location.reload() to refresh the page.
+
+        if the password length is between 10 and 64 characters or is 0 (Auto). Then, generates 3 random numbers using Math.random() and assigns them to elements of the arr array. Then, Using Math.random() to generate a fourth number.
+        
+        *length of the password = x1 + x2 + x3 + (length - sum(x1 + x2 + x3))[ 4th element]
+
 
 @param   :   N/A 
 @return :   array,  Example: [11, 9, 5, 2]
@@ -209,14 +214,24 @@ function getPasswordOptions() {
 }
 
 /*
-@brief:  Function for getting a random element from an array
+@brief:  
+      This getRandom takes in one parameter, arr. Then, called types_array which contains 4 global arrays of characters, lowerCasedCharacters, upperCasedCharacters, numericCharacters, and specialCharacters. also, initializing empty array called tmp_password. Then,  loop through each element of types_array.
+
+      For each loop, the function creates a new array, tmp_array, 0 to the types_array[i].length using the Array.from() method. Then,  shuffles the elements of tmp_array using the sort() and  Math.random().
+
+      Then, another loop inside the main loop  for arr[i] elements  to select the char from types_array[i].
+      If the tmp_array.length >= arr[i] , it will push the characters from types_array[i][tmp_array[j]] to tmp_password array.
+
+      Otherwise, it will use Math.random() to generate random numbers for array, and it will push the characters from types_array[i][tmp_array[Math.floor(Math.random() * types_array[i].length)]] to tmp_password array.
+
+      Finally, the function returns the tmp_password array which contains the randomly selected characters from the 4 arrays.
+
 @param:  Array 
 @return: password array
 */
 
 function getRandom(arr) {
 
-  let error_detect = true;
   types_array = [lowerCasedCharacters, upperCasedCharacters, numericCharacters, specialCharacters]
   let tmp_password = [];
 
@@ -227,14 +242,17 @@ function getRandom(arr) {
 
     // shuffle array elements 
     tmp_array.sort(() => Math.random() - 0.5);
-    console.log(`tmp_array : ${i}: ${arr[i]}`, tmp_array);
+
+    // console.log(`tmp_array : ${i}: ${arr[i]}`, tmp_array);
 
  
     for (let j = 0; j < arr[i]; j++) {
 
       // this will check tmp_array.length and generated random number for each type 
       if (tmp_array.length >= arr[i]) {
-        console.log(types_array[tmp_array[j]])
+
+        // console.log(types_array[tmp_array[j]])
+
         if (types_array[tmp_array[j]] !== 'undefined') {
           // console.log(`array list [${i}]:[${j}] `, types_array[i][tmp_array[j]])
           tmp_password.push(types_array[i][tmp_array[j]]);         
@@ -254,12 +272,17 @@ function getRandom(arr) {
   return tmp_password;
 }
 /*
-@brief:   generate the password from char array and check the criteria of the password 
-@param:   char array  
+@brief: 
+        The function generatePassword takes in one parameter, tmp_password (array return from getRandom()). Then, randomly shuffling the characters in tmp_password using the sort() method and the Math.random() function. Then, it joins the characters of the shuffled array back into a string and assigns it to the variable generated_password. 
+        
+        Next, regular expressions to check if the generated_password string contains any numerical digits, lowercase letters, uppercase letters, or special characters. Then, results of these print to the console, Finally, the function returns the generated_password string.
+
+@param: array  ()
+
 @return:  string 
 */
 
-// Function to generate password with user input
+
 function generatePassword(tmp_password) {
   // let pass_split = password.split("");
   tmp_password.sort(() => Math.random() - 0.5)
