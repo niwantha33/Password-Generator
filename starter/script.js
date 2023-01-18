@@ -163,7 +163,8 @@ function getPasswordOptions() {
         remaining_value = Math.floor(Math.random() * 54 + 10); // range: 54 and minimum : 10 
         // set new password length to remaining_value
         length_of_password = remaining_value;
-        console.log("Auto generated random no: ", length_of_password);
+
+        console.log("Auto-Mode password Length: ", length_of_password);
 
       }
       else {
