@@ -98,7 +98,8 @@ function writePassword() {
 
 ## Debugger
 
-- I learned the debugger statement to inspect the variables in my source code. That helped me to find the issues in my code. 
+- I learned the "debugger statement" which helps to inspect the variables in my source code and helped me to find the issues in my code. 
+
 ```JavaScript
   debugger;
 ```
